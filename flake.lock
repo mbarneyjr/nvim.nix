@@ -3,16 +3,15 @@
     "cfn-lsp-extra": {
       "flake": false,
       "locked": {
-        "lastModified": 1739032741,
-        "narHash": "sha256-tRbK1oHH6LI/y8Ku8nvAVDFiCy+YrKwEqrBHgTNj788=",
+        "lastModified": 1745660970,
+        "narHash": "sha256-XBdYn3XqE30lE7VZ/Hw1sSRKuSLdjoGcVWXYDFvFsLQ=",
         "owner": "LaurenceWarne",
         "repo": "cfn-lsp-extra",
-        "rev": "1a9dea477b088839ec97bba34cb76fb6c52992ef",
+        "rev": "36b1eccc9ebe338c9e0de982c9e7e4437a1eca0c",
         "type": "github"
       },
       "original": {
         "owner": "LaurenceWarne",
-        "ref": "refs/tags/v0.7.2",
         "repo": "cfn-lsp-extra",
         "type": "github"
       }

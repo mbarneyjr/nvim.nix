@@ -4,17 +4,21 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     cfn-lsp-extra = {
-      url = "github:LaurenceWarne/cfn-lsp-extra?ref=refs/tags/v0.7.2";
+      url = "github:LaurenceWarne/cfn-lsp-extra";
       flake = false;
     };
   };
 
   outputs = { self, nixpkgs, cfn-lsp-extra }:
     let
+      # cfn-lint = import ./nix/overlays/cfn-lint.nix;
+      # aws-sam-translator = import ./nix/overlays/aws-sam-translator.nix;
       cfn-lsp-extra-overlay = import ./nix/overlays/cfn-lsp-extra.nix { cfn-lsp-extra = cfn-lsp-extra; };
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         overlays = [
+          # cfn-lint
+          # aws-sam-translator
           cfn-lsp-extra-overlay
         ];
       };
