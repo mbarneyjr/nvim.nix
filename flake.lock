@@ -1,23 +1,41 @@
 {
   "nodes": {
+    "cfn-lsp-extra": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739032741,
+        "narHash": "sha256-tRbK1oHH6LI/y8Ku8nvAVDFiCy+YrKwEqrBHgTNj788=",
+        "owner": "LaurenceWarne",
+        "repo": "cfn-lsp-extra",
+        "rev": "1a9dea477b088839ec97bba34cb76fb6c52992ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LaurenceWarne",
+        "ref": "refs/tags/v0.7.2",
+        "repo": "cfn-lsp-extra",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1733212471,
-        "narHash": "sha256-M1+uCoV5igihRfcUKrr1riygbe73/dzNnzPsmaLCmpo=",
+        "lastModified": 1745804731,
+        "narHash": "sha256-v/sK3AS0QKu/Tu5sHIfddiEHCvrbNYPv8X10Fpux68g=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "55d15ad12a74eb7d4646254e13638ad0c4128776",
+        "rev": "29335f23bea5e34228349ea739f31ee79e267b88",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "root": {
       "inputs": {
+        "cfn-lsp-extra": "cfn-lsp-extra",
         "nixpkgs": "nixpkgs"
       }
     }

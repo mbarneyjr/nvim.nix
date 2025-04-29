@@ -98,11 +98,13 @@ with lib;
       buildPhase = ''
         mkdir -p $out/nvim
         mkdir -p $out/lua
+        # mkdir -p $out/lsp
         rm init.lua
       '';
 
       installPhase = ''
         cp -r lua $out/lua
+        # cp -r lsp $out/lsp
         rm -r lua
         # Copy nvim/after only if it exists
         if [ -d "after" ]; then
