@@ -1,3 +1,4 @@
+# THIS FILE COMES FROM https://github.com/nix-community/kickstart-nix.nvim
 # Function for creating a Neovim derivation
 {
   lib,
