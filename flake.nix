@@ -17,6 +17,9 @@
           tokyonight-nvim
           image-nvim
         ];
+        extraPackages = [
+          pkgs.imagemagick
+        ];
         extraLuaPackages = luaPkgs: with luaPkgs; [
           magick
         ];
