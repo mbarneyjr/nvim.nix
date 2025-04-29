@@ -2,7 +2,6 @@ local key = require('barney.lib.keymap')
 local lsp_file_operations = require('lsp-file-operations')
 
 local lsp_attach = function(_, bufnr)
-  vim.print('on_attach from lsp file', vim.inspect(_), vim.inspect(bufnr))
   key.nmap('gR', vim.lsp.buf.references, '[g]oto LSP [R]eferences', bufnr)
   key.nmap('gd', vim.lsp.buf.definition, '[g]oto LSP [d]efinitions', bufnr)
   key.nmap('<leader>ca', vim.lsp.buf.code_action, 'LSP [c]ode [a]ctions', bufnr)
