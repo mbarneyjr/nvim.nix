@@ -7,19 +7,29 @@
       url = "github:LaurenceWarne/cfn-lsp-extra";
       flake = false;
     };
+    twoslash-queries-src = {
+      url = "github:marilari88/twoslash-queries.nvim";
+      flake = false;
+    };
+    ts-error-translator-src = {
+      url = "github:dmmulroy/ts-error-translator.nvim";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, cfn-lsp-extra }:
+  outputs = { self, nixpkgs, cfn-lsp-extra, twoslash-queries-src, ts-error-translator-src, ... }:
     let
       # cfn-lint = import ./nix/overlays/cfn-lint.nix;
       # aws-sam-translator = import ./nix/overlays/aws-sam-translator.nix;
       cfn-lsp-extra-overlay = import ./nix/overlays/cfn-lsp-extra.nix { cfn-lsp-extra = cfn-lsp-extra; };
+      twoslash-queries-overlay = import ./nix/overlays/twoslash-queries.nix { inherit twoslash-queries-src; };
+      ts-error-translator-overlay = import ./nix/overlays/ts-error-translator.nix { inherit ts-error-translator-src; };
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         overlays = [
-          # cfn-lint
-          # aws-sam-translator
           cfn-lsp-extra-overlay
+          twoslash-queries-overlay
+          ts-error-translator-overlay
         ];
       };
       mkNeovim = pkgs.callPackage ./nix/mkNeovim.nix { };
@@ -80,7 +90,8 @@
           nvim-lint
           # language-specific tools
           tailwind-tools-nvim
-          # tsc-nvim # todo set this up, add ts-error-translator
+          tsc-nvim
+          ts-error-translator
           # cmp, snippets
           nvim-cmp
           cmp-buffer
@@ -92,7 +103,7 @@
           nvim-lspconfig
           cmp-nvim-lsp
           nvim-lsp-file-operations
-          # marilari88/twoslash-queries.nvim # todo add
+          twoslash-queries
           # ai
           copilot-lua
           CopilotChat-nvim
