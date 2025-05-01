@@ -1,15 +1,15 @@
-local key = require('barney.lib.keymap')
+local key = require("barney.lib.keymap")
 local function toggle_fugitive()
   -- get fugitive buffer
   local buffers = vim.api.nvim_list_bufs()
   -- find buffer with fugitive://
   local bufnr = vim.tbl_filter(function(buf)
     local bufname = vim.api.nvim_buf_get_name(buf)
-    return bufname:match('fugitive://')
+    return bufname:match("fugitive://")
   end, buffers)[1]
 
   if not bufnr then
-    vim.cmd('G')
+    vim.cmd("G")
     return
   end
 
@@ -26,4 +26,4 @@ local function toggle_fugitive()
   -- close fugitive buffer
   vim.api.nvim_buf_delete(bufnr, { force = true })
 end
-key.nmap('<c-g>', toggle_fugitive, 'Toggle vim-fugitive')
+key.nmap("<c-g>", toggle_fugitive, "Toggle vim-fugitive")

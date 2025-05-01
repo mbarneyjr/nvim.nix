@@ -1,1 +1,1 @@
-vim.lsp.enable('dotls')
+vim.lsp.enable("dotls")

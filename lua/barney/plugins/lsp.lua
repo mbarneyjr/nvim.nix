@@ -2,31 +2,31 @@ local key = require("barney.lib.keymap")
 local lsp_file_operations = require("lsp-file-operations")
 
 local lsp_attach = function(_, bufnr)
-	key.nmap("gR", vim.lsp.buf.references, "[g]oto LSP [R]eferences", bufnr)
-	key.nmap("gd", vim.lsp.buf.definition, "[g]oto LSP [d]efinitions", bufnr)
-	key.nmap("<leader>ca", vim.lsp.buf.code_action, "LSP [c]ode [a]ctions", bufnr)
-	key.nmap("<leader>cr", vim.lsp.buf.rename, "LSP [c]ode [r]ename", bufnr)
-	key.nmap("<leader>dk", function()
-		vim.diagnostic.jump({ count = 1, float = true })
-	end, "goto [d]iagnostic [p]revious", bufnr)
-	key.nmap("<leader>dj", function()
-		vim.diagnostic.jump({ count = -1, float = true })
-	end, "goto [d]iagnostic [n]ext", bufnr)
-	key.nmap("K", vim.lsp.buf.hover, "LSP documentation", bufnr)
-	key.nmap("<leader>rs", ":LspRestart<CR>", "LSP documentation", bufnr)
+  key.nmap("gR", vim.lsp.buf.references, "[g]oto LSP [R]eferences", bufnr)
+  key.nmap("gd", vim.lsp.buf.definition, "[g]oto LSP [d]efinitions", bufnr)
+  key.nmap("<leader>ca", vim.lsp.buf.code_action, "LSP [c]ode [a]ctions", bufnr)
+  key.nmap("<leader>cr", vim.lsp.buf.rename, "LSP [c]ode [r]ename", bufnr)
+  key.nmap("<leader>dk", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end, "goto [d]iagnostic [p]revious", bufnr)
+  key.nmap("<leader>dj", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end, "goto [d]iagnostic [n]ext", bufnr)
+  key.nmap("K", vim.lsp.buf.hover, "LSP documentation", bufnr)
+  key.nmap("<leader>rs", ":LspRestart<CR>", "LSP documentation", bufnr)
 end
 vim.api.nvim_create_autocmd("LspAttach", { callback = lsp_attach })
 
 lsp_file_operations.setup()
 
 vim.lsp.config("*", {
-	capabilities = {
-		workspace = {
-			didChangeWatchedFiles = {
-				dynamicRegistration = false,
-			},
-		},
-	},
+  capabilities = {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = false,
+      },
+    },
+  },
 })
 
 require("barney.plugins.lsp.bash")

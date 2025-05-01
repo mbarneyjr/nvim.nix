@@ -1,6 +1,6 @@
-local treesitter = require('nvim-treesitter.configs')
+local treesitter = require("nvim-treesitter.configs")
 -- configure treesitter
-treesitter.setup { -- enable syntax highlighting
+treesitter.setup({ -- enable syntax highlighting
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
@@ -20,22 +20,22 @@ treesitter.setup { -- enable syntax highlighting
   playground = {
     enable = true,
   },
-}
+})
 
 -- jsdoc indentation workaround
 function _G.javascript_indent()
   local line = vim.fn.getline(vim.v.lnum)
   local prev_line = vim.fn.getline(vim.v.lnum - 1)
-  if line:match('^%s*[%*/]%s*') then
-    if prev_line:match('^%s*%*%s*') then
+  if line:match("^%s*[%*/]%s*") then
+    if prev_line:match("^%s*%*%s*") then
       return vim.fn.indent(vim.v.lnum - 1)
     end
-    if prev_line:match('^%s*/%*%*%s*$') then
+    if prev_line:match("^%s*/%*%*%s*$") then
       return vim.fn.indent(vim.v.lnum - 1) + 1
     end
   end
 
-  return vim.fn['GetJavascriptIndent']()
+  return vim.fn["GetJavascriptIndent"]()
 end
 
 vim.cmd([[autocmd FileType javascript setlocal indentexpr=v:lua.javascript_indent()]])

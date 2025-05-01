@@ -1,1 +1,1 @@
-vim.lsp.enable('dockerls')
+vim.lsp.enable("dockerls")

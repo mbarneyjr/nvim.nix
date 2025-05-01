@@ -1,6 +1,6 @@
-vim.lsp.config('nil_ls', {
+vim.lsp.config("nil_ls", {
   settings = {
-    ['nil'] = {
+    ["nil"] = {
       nix = {
         flake = {
           autoEvalInputs = true,
@@ -9,4 +9,4 @@ vim.lsp.config('nil_ls', {
     },
   },
 })
-vim.lsp.enable('nil_ls')
+vim.lsp.enable("nil_ls")

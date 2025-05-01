@@ -1,4 +1,4 @@
-require('copilot').setup {
+require("copilot").setup({
   panel = { enabled = false },
   suggestion = { enabled = false },
   -- suggestion = {
@@ -15,14 +15,14 @@ require('copilot').setup {
   --   },
   -- },
   filetypes = {
-    ['*'] = true,
+    ["*"] = true,
   },
-  copilot_node_command = 'node', -- Node.js version must be > 16.x
+  copilot_node_command = "node", -- Node.js version must be > 16.x
   server_opts_overrides = {},
-}
-require('CopilotChat').setup {
+})
+require("CopilotChat").setup({
   debug = true,
-}
-require('copilot_cmp').setup()
-local keys = require('barney.lib.keymap')
-keys.imap('<c-l>', '')
+})
+require("copilot_cmp").setup()
+local keys = require("barney.lib.keymap")
+keys.imap("<c-l>", "")

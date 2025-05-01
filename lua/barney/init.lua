@@ -1,2 +1,2 @@
-require('barney.core')
-require('barney.plugins')
+require("barney.core")
+require("barney.plugins")

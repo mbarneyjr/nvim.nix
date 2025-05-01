@@ -1,4 +1,4 @@
-vim.lsp.config('pyright', {
-  root_markers = { 'pyrightconfig.json', 'requirements.txt', '.git' },
+vim.lsp.config("pyright", {
+  root_markers = { "pyrightconfig.json", "requirements.txt", ".git" },
 })
-vim.lsp.enable('pyright')
+vim.lsp.enable("pyright")

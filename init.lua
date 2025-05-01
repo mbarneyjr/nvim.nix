@@ -1,1 +1,1 @@
-require('barney')
+require("barney")

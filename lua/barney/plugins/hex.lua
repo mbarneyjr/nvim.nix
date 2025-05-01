@@ -1,2 +1,2 @@
-local hex = require('hex')
+local hex = require("hex")
 hex.setup()
