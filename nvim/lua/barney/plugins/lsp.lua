@@ -29,7 +29,6 @@ vim.lsp.config('*', {
   },
 })
 
--- require('barney.plugins.lsp.asl')
 require('barney.plugins.lsp.bash')
 require('barney.plugins.lsp.cfn')
 require('barney.plugins.lsp.css')

@@ -29,6 +29,7 @@ nvim_tree.setup {
   },
   renderer = {
     add_trailing = true,
+    symlink_destination = false,
     special_files = {},
     highlight_git = true,
     highlight_diagnostics = false,

@@ -17,13 +17,23 @@
     };
   };
 
-  outputs = { self, nixpkgs, cfn-lsp-extra, twoslash-queries-src, ts-error-translator-src, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      cfn-lsp-extra,
+      twoslash-queries-src,
+      ts-error-translator-src,
+      ...
+    }:
     let
-      # cfn-lint = import ./nix/overlays/cfn-lint.nix;
-      # aws-sam-translator = import ./nix/overlays/aws-sam-translator.nix;
       cfn-lsp-extra-overlay = import ./nix/overlays/cfn-lsp-extra.nix { cfn-lsp-extra = cfn-lsp-extra; };
-      twoslash-queries-overlay = import ./nix/overlays/twoslash-queries.nix { inherit twoslash-queries-src; };
-      ts-error-translator-overlay = import ./nix/overlays/ts-error-translator.nix { inherit ts-error-translator-src; };
+      twoslash-queries-overlay = import ./nix/overlays/twoslash-queries.nix {
+        inherit twoslash-queries-src;
+      };
+      ts-error-translator-overlay = import ./nix/overlays/ts-error-translator.nix {
+        inherit ts-error-translator-src;
+      };
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
         overlays = [
@@ -134,7 +144,6 @@
           pkgs.tailwindcss-language-server
           pkgs.glsl_analyzer
           pkgs.python3Packages.cfn-lsp-extra
-          # todo: amazon-states-language-service
         ];
         extraLuaPackages =
           luaPkgs: with luaPkgs; [
