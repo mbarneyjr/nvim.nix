@@ -18,137 +18,17 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
-      nixpkgs,
-      cfn-lsp-extra,
-      twoslash-queries-src,
-      ts-error-translator-src,
       ...
     }:
     let
-      cfn-lsp-extra-overlay = import ./nix/overlays/cfn-lsp-extra.nix { cfn-lsp-extra = cfn-lsp-extra; };
-      twoslash-queries-overlay = import ./nix/overlays/twoslash-queries.nix {
-        inherit twoslash-queries-src;
-      };
-      ts-error-translator-overlay = import ./nix/overlays/ts-error-translator.nix {
-        inherit ts-error-translator-src;
-      };
-      pkgs = import nixpkgs {
-        system = "aarch64-darwin";
-        overlays = [
-          cfn-lsp-extra-overlay
-          twoslash-queries-overlay
-          ts-error-translator-overlay
-        ];
-      };
-      mkNeovim = pkgs.callPackage ./nix/mkNeovim.nix { };
+      mkMbnvim = import ./nix/mkMbnvim.nix;
     in
     {
-      packages.aarch64-darwin.default = mkNeovim {
-        withPython3 = true;
-        withRuby = true;
-        withNodeJs = true;
-        withSqlite = true;
-        viAlias = true;
-        vimAlias = true;
-        plugins = with pkgs.vimPlugins; [
-          # notify
-          nvim-notify
-          # colorscheme
-          tokyonight-nvim
-          # lualine
-          lualine-nvim
-          # which-key
-          which-key-nvim
-          # file handling
-          bigfile-nvim
-          hex-nvim
-          # tmux
-          vim-tmux-navigator
-          # treesitter
-          nvim-treesitter.withAllGrammars
-          nvim-treesitter-textobjects
-          nvim-ts-autotag
-          # nvim-tree
-          nvim-tree-lua
-          nvim-web-devicons
-          # comment
-          comment-nvim
-          nvim-ts-context-commentstring
-          # undotree
-          undotree
-          # telescope
-          telescope-nvim
-          telescope-fzf-native-nvim
-          # harpoon
-          harpoon2
-          # images
-          image-nvim
-          # git
-          vim-fugitive
-          vim-rhubarb
-          gitsigns-nvim
-          # code
-          trouble-nvim
-          nvim-coverage
-          nvim-dap
-          nvim-dap-ui
-          nvim-nio
-          nvim-dap-virtual-text
-          conform-nvim
-          nvim-lint
-          # language-specific tools
-          tailwind-tools-nvim
-          tsc-nvim
-          ts-error-translator
-          # cmp, snippets
-          nvim-cmp
-          cmp-buffer
-          cmp-path
-          luasnip
-          cmp_luasnip
-          friendly-snippets
-          # lsp
-          nvim-lspconfig
-          cmp-nvim-lsp
-          nvim-lsp-file-operations
-          twoslash-queries
-          # ai
-          copilot-lua
-          CopilotChat-nvim
-          copilot-cmp
-          avante-nvim
-        ];
-        extraPackages = [
-          pkgs.imagemagick
-          pkgs.fzf
-          pkgs.stylua
-          pkgs.nodePackages.prettier
-          pkgs.black
-          pkgs.actionlint
-          pkgs.nixfmt-rfc-style
-          pkgs.vscode-js-debug
-          pkgs.typescript-language-server
-          pkgs.vscode-langservers-extracted
-          pkgs.gopls
-          pkgs.lua-language-server
-          pkgs.docker-language-server
-          pkgs.dockerfile-language-server-nodejs
-          pkgs.docker-compose-language-service
-          pkgs.dot-language-server
-          pkgs.pyright
-          pkgs.templ
-          pkgs.nil
-          pkgs.bash-language-server
-          pkgs.tailwindcss-language-server
-          pkgs.glsl_analyzer
-          pkgs.python3Packages.cfn-lsp-extra
-        ];
-        extraLuaPackages =
-          luaPkgs: with luaPkgs; [
-            magick
-          ];
+      packages.aarch64-darwin.default = mkMbnvim {
+        system = "aarch64-darwin";
+        inputs = inputs;
       };
       apps.aarch64-darwin.default = {
         type = "app";
