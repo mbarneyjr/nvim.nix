@@ -74,7 +74,7 @@ with lib;
     # This uses the ignoreConfigRegexes list to filter
     # the nvim directory
     nvimRtpSrc = let
-      src = ../nvim;
+      src = ../.;
     in
       lib.cleanSourceWith {
         inherit src;
@@ -128,7 +128,7 @@ with lib;
         vim.opt.rtp:prepend('${nvimRtp}/lua')
       ''
       # Wrap init.lua
-      + (builtins.readFile ../nvim/init.lua)
+      + (builtins.readFile ../init.lua)
       # Bootstrap/load dev plugins
       + optionalString (devPlugins != []) (
         ''
